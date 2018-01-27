@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,70 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MyBrowserApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jp8-iO-9Y5">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="←" id="QXG-Zp-g0o">
+                                        <connections>
+                                            <action selector="goBackButton:" destination="BYZ-38-t0r" id="b7C-rM-s05"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="→" id="9mM-Df-hi8">
+                                        <connections>
+                                            <action selector="goForwardButton:" destination="BYZ-38-t0r" id="w0W-8j-XuO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EPg-FW-YQy"/>
+                                    <barButtonItem systemItem="refresh" id="0BV-TZ-jE9">
+                                        <connections>
+                                            <action selector="reload:" destination="BYZ-38-t0r" id="LWf-ZU-2DS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-Vm-2oh">
+                                <rect key="frame" x="10" y="30" width="355" height="30"/>
+                                <color key="textColor" red="1" green="0.063614997940000001" blue="0.26255124019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
+                            </textField>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1N-Rk-qxP">
+                                <rect key="frame" x="0.0" y="68" width="375" height="555"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="akG-Av-UZh">
+                                <rect key="frame" x="350" y="35" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="akG-Av-UZh" secondAttribute="trailing" constant="5" id="G4b-q2-jBa"/>
+                            <constraint firstItem="OXT-Vm-2oh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="PmO-1Q-v4d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OXT-Vm-2oh" secondAttribute="trailing" constant="10" id="bO1-5l-A69"/>
+                            <constraint firstItem="OXT-Vm-2oh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ccg-rT-7V3"/>
+                            <constraint firstItem="akG-Av-UZh" firstAttribute="centerY" secondItem="OXT-Vm-2oh" secondAttribute="centerY" id="uI1-zh-xmo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="QXG-Zp-g0o" id="h0h-RM-kxl"/>
+                        <outlet property="browserActivityIndicatorView" destination="akG-Av-UZh" id="kkD-3Y-XSa"/>
+                        <outlet property="browserWebView" destination="W1N-Rk-qxP" id="2ds-DC-TXU"/>
+                        <outlet property="forwardButton" destination="9mM-Df-hi8" id="Dxm-m0-bqA"/>
+                        <outlet property="reloadButton" destination="0BV-TZ-jE9" id="4fh-cp-EcC"/>
+                        <outlet property="urlTextField" destination="OXT-Vm-2oh" id="Cec-TP-ZGa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
